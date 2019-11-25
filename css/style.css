@@ -1,0 +1,27 @@
+h1{
+        text-align: center;
+}
+
+
+nav ul li{
+    display: inline;
+    
+}
+
+nav ul {
+    text-align: center;
+
+}
+
+
+main img{
+    text-align: center;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+}
+
+section{
+    text-align: center;
+    margin-top: 50px;
+}
