@@ -27,7 +27,7 @@ var left = document.querySelector('#left');
 var mid = document.querySelector('#mid');
 var right = document.querySelector('#right');
 var imagesSection = document.querySelector('#imagesSection');
-var counter = 20;
+var counter = 0;
 
 
 function Vote(name) {
@@ -45,16 +45,23 @@ for (let i = 0; i < images.length; i++) {
   new Vote(images[i]);
 }
 
-
+// var imagesShawed = [] ;
 function render() {
+
 
   while (leftVote === rightVote || leftVote === midVote || rightVote === midVote) {
 
     var leftVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
     var rightVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
     var midVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
-
   }
+
+
+
+  // imagesShawed.push(leftVote,midVote,rightVote);
+  // tellMe();
+
+
 
   leftVote.views++;
   rightVote.views++;
@@ -76,11 +83,20 @@ function render() {
   counter++;
 
 }
+// console.log(imagesShawed);
+//////////// test //////////
+// function tellMe(){
+//   if ( imagesShawed === imagesShawed ){
+//     render();
+//     imagesShawed = [];
+//   }else{alert('hi');}
+// }
 
-
+//////////// test ///////
 function display() {
   var voteArr = [];
   var viewArr = [];
+
   var container = document.getElementById('result');
   var ulEl = document.createElement('ul');
   container.appendChild(ulEl);
@@ -90,14 +106,11 @@ function display() {
     liEl.textContent = `${images[i]} had ${Vote.all[i].votes}votes and was shown ${Vote.all[i].views} times`;
     voteArr.push(Vote.all[i].votes);
     viewArr.push(Vote.all[i].views);
+
   }// the end of the for loop
 
-
-
-
-
-
-
+  // console.log(voteArr);
+  // the chart
   var ctx = document.getElementById('myChart').getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'bar',
@@ -140,10 +153,7 @@ function display() {
     }
   });
 
-
-  console.log(voteArr);
-
-
+  // end of the chart
 }
 render();
 
@@ -154,6 +164,7 @@ function stopEvent(event) {
       for (let i = 0; i < Vote.all.length; i++) {
         if (event.target.title === Vote.all[i].name) {
           Vote.all[i].votes++;
+
         }
 
 
@@ -161,16 +172,56 @@ function stopEvent(event) {
       render();
     } if (counter === 26) {
       display();
+      updateVotes();
+
 
     }
   }
 }
-
 imagesSection.addEventListener('click', stopEvent);
+getVotes();
+
+
 
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 //////////////////////////////////////////////////////////////////////////////
+// start the local Storage.
+
+function updateVotes(){
+  var viewString = JSON.stringify(Vote.all);
+  localStorage.setItem('voteCounts', viewString);
+}
+
+// function updateViews(){
+//   var votesString = JSON.stringify(viewArr);
+//   localStorage.setItem('viewCounts', votesString);
+// }
+
+function getVotes(){
+  var voteString = localStorage.getItem('voteCounts');
+  if (voteString){
+    Vote.all=JSON.parse(voteString);
+    render();
+  }
+}
+
+// function getViews(){
+//   var viewString = localStorage.getItem('viewCounts');
+//   if (viewString){
+//     voteArr=JSON.parse(viewString);
+//     display();
+//   }
+// }
+
+
+
+
+
+
+
+
+
 
