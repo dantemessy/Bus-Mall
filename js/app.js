@@ -27,8 +27,7 @@ var left = document.querySelector('#left');
 var mid = document.querySelector('#mid');
 var right = document.querySelector('#right');
 var imagesSection = document.querySelector('#imagesSection');
-var counter = 0;
-
+var counter = 20;
 
 
 function Vote(name) {
@@ -49,7 +48,6 @@ for (let i = 0; i < images.length; i++) {
 
 function render() {
 
-  console.log('hi');
   while (leftVote === rightVote || leftVote === midVote || rightVote === midVote) {
 
     var leftVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
@@ -81,6 +79,8 @@ function render() {
 
 
 function display() {
+  var voteArr = [];
+  var viewArr = [];
   var container = document.getElementById('result');
   var ulEl = document.createElement('ul');
   container.appendChild(ulEl);
@@ -88,12 +88,67 @@ function display() {
     var liEl = document.createElement('li');
     ulEl.appendChild(liEl);
     liEl.textContent = `${images[i]} had ${Vote.all[i].votes}votes and was shown ${Vote.all[i].views} times`;
-  }
+    voteArr.push(Vote.all[i].votes);
+    viewArr.push(Vote.all[i].views);
+  }// the end of the for loop
+
+
+
+
+
+
+
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: images,
+      datasets: [
+        {
+          label: '# of Votes',
+          data: voteArr,
+          backgroundColor: [
+            'rgba(0, 0, 0, 1)'
+          ],
+
+          borderWidth: 1
+        },
+        ///////
+        {
+          label: '# of Views',
+          data: viewArr,
+          backgroundColor: [
+            'rgba(0, 99, 132, 1)'
+          ],
+
+          borderWidth: 1
+        }
+
+        ///////
+      ]
+    },
+    options: {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true
+            }
+          }
+        ]
+      }
+    }
+  });
+
+
+  console.log(voteArr);
+
+
 }
 render();
 
 
-function stopEvent (event){
+function stopEvent(event) {
   if (counter <= 25) {
     if (event.target.id !== 'imagesSection') {
       for (let i = 0; i < Vote.all.length; i++) {
@@ -104,36 +159,18 @@ function stopEvent (event){
 
       }
       render();
-    } if (counter ===26 ) {
+    } if (counter === 26) {
       display();
-    //   imagesSection.removeEventListener('click', stopEvent(event));
+
     }
   }
 }
 
-imagesSection.addEventListener('click', stopEvent) ;
-
-// imagesSection.addEventListener('click', function finish(event) {
-//   if (counter <= 10) {
-//     if (event.target.id !== 'imagesSection') {
-//       for (let i = 0; i < Vote.all.length; i++) {
-//         if (event.target.title === Vote.all[i].name) {
-//           Vote.all[i].votes++;
-//         }
-
-
-//       }
-//     }
-//     render();
-//     counter++;
-//   } else {
-//     display();
-//     imagesSection.removeEventListener();
-//   }
-// });
-// console.table(Vote.all[0]);
-
+imagesSection.addEventListener('click', stopEvent);
 
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+//////////////////////////////////////////////////////////////////////////////
+
