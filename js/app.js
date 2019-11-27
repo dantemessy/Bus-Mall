@@ -60,6 +60,8 @@ function render() {
     // the shift idea by shihab will solve the infinite-loop
     imagesShawed.shift();
   }imagesShawed.push(leftVote);
+
+
   console.log(leftVote);
   while(imagesShawed.includes(rightVote))
   {
@@ -67,6 +69,8 @@ function render() {
     imagesShawed.shift();
     // the shift idea by shihab will solve the infinite-loop
   }imagesShawed.push(rightVote);
+
+
   console.log(rightVote);
   while(imagesShawed.includes(midVote))
   {
@@ -74,6 +78,7 @@ function render() {
     imagesShawed.shift();
     // the shift idea by shihab will solve the infinite-loop
   }imagesShawed.push(midVote);
+
   console.log(midVote);
 
 
