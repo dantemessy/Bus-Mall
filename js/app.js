@@ -45,33 +45,38 @@ for (let i = 0; i < images.length; i++) {
   new Vote(images[i]);
 }
 
+
+
 var imagesShawed = [] ;
-var flag = 0 ;
 function render() {
 
-  while (leftVote === rightVote || leftVote === midVote || rightVote === midVote) {
+  var leftVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
+  var rightVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
+  var midVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
 
-    var leftVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
-    var rightVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
-    var midVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
-  }flag++;
-  imagesShawed.push(leftVote,midVote,rightVote);
-  if(flag >=2 ){
-
-    if (imagesShawed.includes(leftVote) || imagesShawed.includes(midVote) || imagesShawed.includes(rightVote)){
-      while (leftVote === rightVote || leftVote === midVote || rightVote === midVote) {
-
-        leftVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
-        rightVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
-        midVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
-      }
-    }
+  while(imagesShawed.includes(leftVote))
+  {
+    leftVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
+    // the shift idea by shihab will solve the infinite-loop
     imagesShawed.shift();
+  }imagesShawed.push(leftVote);
+  console.log(leftVote);
+  while(imagesShawed.includes(rightVote))
+  {
+    rightVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
     imagesShawed.shift();
+    // the shift idea by shihab will solve the infinite-loop
+  }imagesShawed.push(rightVote);
+  console.log(rightVote);
+  while(imagesShawed.includes(midVote))
+  {
+    midVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
     imagesShawed.shift();
+    // the shift idea by shihab will solve the infinite-loop
+  }imagesShawed.push(midVote);
+  console.log(midVote);
 
-  }
-  // tellMe();
+
   leftVote.views++;
   rightVote.views++;
   midVote.views++;
@@ -86,8 +91,52 @@ function render() {
   right.setAttribute('alt', rightVote.name);
   right.setAttribute('title', rightVote.name);
 
-  counter++;
+  counter++ ;
+
+
+
+
 }
+
+//   while (leftVote === rightVote || leftVote === midVote || rightVote === midVote) {
+
+//     var leftVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
+//     var rightVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
+//     var midVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
+//   }flag++;
+//   imagesShawed.push(leftVote,midVote,rightVote);
+//   if(flag >=2 ){
+
+//     if (imagesShawed.includes(leftVote) || imagesShawed.includes(midVote) || imagesShawed.includes(rightVote)){
+//       while (leftVote === rightVote || leftVote === midVote || rightVote === midVote) {
+
+//         leftVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
+//         rightVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
+//         midVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
+//       }
+//     }
+
+//     imagesShawed.shift();
+//     imagesShawed.shift();
+//     imagesShawed.shift();
+//   }
+//   // tellMe();
+//   leftVote.views++;
+//   rightVote.views++;
+//   midVote.views++;
+
+//   left.setAttribute('src', leftVote.imagePath);
+//   left.setAttribute('alt', leftVote.name);
+//   left.setAttribute('title', leftVote.name);
+//   mid.setAttribute('src', midVote.imagePath);
+//   mid.setAttribute('alt', midVote.name);
+//   mid.setAttribute('title', midVote.name);
+//   right.setAttribute('src', rightVote.imagePath);
+//   right.setAttribute('alt', rightVote.name);
+//   right.setAttribute('title', rightVote.name);
+
+//   counter++;
+// }
 console.log(imagesShawed);
 //////////// test //////////
 // function tellMe(){
