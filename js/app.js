@@ -45,30 +45,36 @@ for (let i = 0; i < images.length; i++) {
   new Vote(images[i]);
 }
 
-// var imagesShawed = [] ;
+var imagesShawed = [] ;
+var flag = 0 ;
 function render() {
-
 
   while (leftVote === rightVote || leftVote === midVote || rightVote === midVote) {
 
     var leftVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
     var rightVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
     var midVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
+  }flag++;
+  imagesShawed.push(leftVote,midVote,rightVote);
+  if(flag >=2 ){
+
+    if (imagesShawed.includes(leftVote) || imagesShawed.includes(midVote) || imagesShawed.includes(rightVote)){
+      while (leftVote === rightVote || leftVote === midVote || rightVote === midVote) {
+
+        leftVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
+        rightVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
+        midVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
+      }
+    }
+    imagesShawed.shift();
+    imagesShawed.shift();
+    imagesShawed.shift();
+
   }
-
-
-
-  // imagesShawed.push(leftVote,midVote,rightVote);
   // tellMe();
-
-
-
   leftVote.views++;
   rightVote.views++;
   midVote.views++;
-
-
-
 
   left.setAttribute('src', leftVote.imagePath);
   left.setAttribute('alt', leftVote.name);
@@ -81,17 +87,15 @@ function render() {
   right.setAttribute('title', rightVote.name);
 
   counter++;
-
 }
-// console.log(imagesShawed);
+console.log(imagesShawed);
 //////////// test //////////
 // function tellMe(){
 //   if ( imagesShawed === imagesShawed ){
 //     render();
 //     imagesShawed = [];
-//   }else{alert('hi');}
+//   }
 // }
-
 //////////// test ///////
 function display() {
   var voteArr = [];
@@ -120,9 +124,9 @@ function display() {
         {
           label: '# of Votes',
           data: voteArr,
-          backgroundColor: [
+          backgroundColor:
             'rgba(0, 0, 0, 1)'
-          ],
+          ,
 
           borderWidth: 1
         },
@@ -130,9 +134,9 @@ function display() {
         {
           label: '# of Views',
           data: viewArr,
-          backgroundColor: [
+          backgroundColor:
             'rgba(0, 99, 132, 1)'
-          ],
+          ,
 
           borderWidth: 1
         }
@@ -215,13 +219,3 @@ function getVotes(){
 //     display();
 //   }
 // }
-
-
-
-
-
-
-
-
-
-
