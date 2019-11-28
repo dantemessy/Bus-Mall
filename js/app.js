@@ -103,54 +103,7 @@ function render() {
 
 }
 
-//   while (leftVote === rightVote || leftVote === midVote || rightVote === midVote) {
 
-//     var leftVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
-//     var rightVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
-//     var midVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
-//   }flag++;
-//   imagesShawed.push(leftVote,midVote,rightVote);
-//   if(flag >=2 ){
-
-//     if (imagesShawed.includes(leftVote) || imagesShawed.includes(midVote) || imagesShawed.includes(rightVote)){
-//       while (leftVote === rightVote || leftVote === midVote || rightVote === midVote) {
-
-//         leftVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
-//         rightVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
-//         midVote = Vote.all[randomNumber(0, Vote.all.length - 1)];
-//       }
-//     }
-
-//     imagesShawed.shift();
-//     imagesShawed.shift();
-//     imagesShawed.shift();
-//   }
-//   // tellMe();
-//   leftVote.views++;
-//   rightVote.views++;
-//   midVote.views++;
-
-//   left.setAttribute('src', leftVote.imagePath);
-//   left.setAttribute('alt', leftVote.name);
-//   left.setAttribute('title', leftVote.name);
-//   mid.setAttribute('src', midVote.imagePath);
-//   mid.setAttribute('alt', midVote.name);
-//   mid.setAttribute('title', midVote.name);
-//   right.setAttribute('src', rightVote.imagePath);
-//   right.setAttribute('alt', rightVote.name);
-//   right.setAttribute('title', rightVote.name);
-
-//   counter++;
-// }
-console.log(imagesShawed);
-//////////// test //////////
-// function tellMe(){
-//   if ( imagesShawed === imagesShawed ){
-//     render();
-//     imagesShawed = [];
-//   }
-// }
-//////////// test ///////
 function display() {
   var voteArr = [];
   var viewArr = [];

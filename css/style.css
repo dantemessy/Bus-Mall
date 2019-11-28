@@ -1,5 +1,6 @@
 h1{
         text-align: center;
+        padding-top: 10px;
 }
 
 
@@ -8,9 +9,40 @@ nav ul li{
     
 }
 
+
+html{
+    background: url(https://wallpaperplay.com/walls/full/e/4/2/226732.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+a{
+    text-decoration: none;
+    color: white;
+    margin-left: 35px;
+    margin-right: 35px;
+
+}
+
+header{
+    background-color: rgba(0, 0, 0, 0.473);
+    height: 150px;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 45px;
+}
+
+section img{
+    border: 25px;
+    border-color: black;
+    margin: 25px;
+}
+
 nav ul {
     text-align: center;
-
+    margin-top: 35px;
 }
 
 
@@ -24,5 +56,22 @@ main img{
 section{
     text-align: center;
     margin-top: 50px;
+}
+
+#result{
+
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+}
+
+#result li:hover{
+
+    transform: scale(1.3);
+    transition: 150ms;
+}
+
+#result li{
+
+    margin-top: 10px;
 }
 
